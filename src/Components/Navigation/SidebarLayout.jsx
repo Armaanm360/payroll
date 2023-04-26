@@ -17,6 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MenuWithIcon from './Menu/MenuWithIcon';
+import './SidebarLayout.css';
 
 
 const drawerWidth = 240;
@@ -51,7 +52,7 @@ function SidebarLayout(props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar>
+        <Toolbar  className='toolbar'>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -61,9 +62,21 @@ function SidebarLayout(props) {
           >
             <MenuIcon  style={{ color:"#000" }}/>
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Responsive drawer
-          </Typography>
+             <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'flex-end',
+          p: 1,
+          m: 1,
+          bgcolor: 'background. ',
+          borderRadius: 1,
+        }}
+      >
+        <div>Item 1</div>
+        <div>Item 1</div>
+        <div>Item 1</div>
+
+      </Box>
         </Toolbar>
       </AppBar>
       <Box

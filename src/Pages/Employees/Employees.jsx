@@ -1,7 +1,8 @@
 import { CheckBox } from '@mui/icons-material';
 import { Avatar, Box, Button, Card, CardActions, CardContent, Container, CssBaseline, FormControlLabel, Grid, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 const bull = (
   <Box
     component="span"
@@ -33,9 +34,18 @@ const style = {
   boxShadow: 24,
   p: 2,
 };
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const createOnClick = (e) =>{
+    e.preventDefault();
+    
+  setOpen(false);
+toast.success("New Employee Created")
+    
+
+  }
+
   return (
        <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -77,7 +87,7 @@ const style = {
         </TableBody>
       </Table>
 
-
+<form onSubmit={createOnClick}>
       <Modal
         open={open}
         onClose={handleClose}
@@ -98,11 +108,11 @@ const style = {
           <Box
             component="form"
             noValidate
-            // onSubmit={handleSubmit}
             sx={{ mt: 0 }}
           >
           <h2>New Employee</h2>
-            <Grid container spacing={2}>
+
+              <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -165,6 +175,7 @@ const style = {
                 />
               </Grid>
             </Grid>
+          
             <Button
               type="submit"
               fullWidth
@@ -173,11 +184,26 @@ const style = {
             >
              Create
             </Button>
+           
           </Box>
         </Box>
       </Container>
         </Box>
       </Modal>
+      </form>   
+     <ToastContainer
+position="top-right"
+autoClose={1500}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
+{/* Same as */}
     </TableContainer>
 
     
