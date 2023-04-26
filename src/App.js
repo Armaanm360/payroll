@@ -10,6 +10,7 @@ import PayRuns from './Pages/Pay Runs/PayRuns';
 import SalaryDetails from './Pages/Salary Details/SalaryDetails';
 import TimeClock from './Pages/TimeClock/TimeClock';
 import Reports from './Pages/Reports/Reports';
+import Dashboard from './Pages/Dashboard/Dashboard';
 
 function App() {
   const router = createBrowserRouter([
@@ -19,6 +20,10 @@ function App() {
       {
       path:"/approvals",
       element:<Approvals></Approvals>
+      },
+      {
+      path:"/",
+      element:<Dashboard></Dashboard>
       },
       {
       path:"/attendence",

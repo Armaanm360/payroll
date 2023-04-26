@@ -1,6 +1,7 @@
 import React from 'react';
 import ListSubheader from '@mui/material/ListSubheader';
 import List from '@mui/material/List';
+import DashboardTwoToneIcon from '@mui/icons-material/Dashboard';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -29,6 +30,17 @@ const MenuWithIcon = () => {
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
+      <ListItemButton
+
+       component={Link}
+       to="/"
+      
+      >
+        <ListItemIcon>
+          <DashboardTwoToneIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
       <ListItemButton
 
        component={Link}

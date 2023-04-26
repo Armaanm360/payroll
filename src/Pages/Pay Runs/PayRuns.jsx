@@ -11,16 +11,13 @@ const bull = (
   </Box>
 )
 const Employees = () => {
-  function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+  function createData(name, calories, fat, carbs, protein,latin) {
+  return { name, calories, fat, carbs, protein,latin };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0,50),
+
 ];
 
 const style = {
@@ -41,7 +38,7 @@ const style = {
     e.preventDefault();
     
   setOpen(false);
-toast.success("New Employee Created")
+toast.success("Payment Successfull")
     
 
   }
@@ -69,10 +66,11 @@ toast.success("New Employee Created")
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell align="right">Time-In(Morning)</TableCell>
-            <TableCell align="right">Time-Out</TableCell>
-            <TableCell align="right">Total Hours</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell>Employee</TableCell>
+            <TableCell>Month</TableCell>
+            <TableCell>Payment Date</TableCell>
+            <TableCell>Payment Mone</TableCell>
+            <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -88,6 +86,8 @@ toast.success("New Employee Created")
               <TableCell align="right">{row.fat}</TableCell>
               <TableCell align="right">{row.carbs}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.latin}</TableCell>
             </TableRow>
           ))}
         </TableBody>
