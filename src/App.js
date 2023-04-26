@@ -1,23 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import SidebarLayout from './Components/Navigation/SidebarLayout';
+import Main from './Components/Layout/Main';
+import Apon from './Components/Layout/Apon';
+import Approvals from './Pages/Approvals/Approvals';
+import Attendence from './Pages/Attendence/Attendence';
+import Employees from './Pages/Employees/Employees';
+import Investments from './Pages/Investments/Investments';
+import PayRuns from './Pages/Pay Runs/PayRuns';
+import SalaryDetails from './Pages/Salary Details/SalaryDetails';
+import TimeClock from './Pages/TimeClock/TimeClock';
+import Reports from './Pages/Reports/Reports';
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element:<Main></Main>,children:[
+      {
+      path:"/approvals",
+      element:<Approvals></Approvals>
+      },
+      {
+      path:"/attendence",
+      element:<Attendence></Attendence>
+      },
+      {
+      path:"/employees",
+      element:<Employees></Employees>
+      },
+      {
+      path:"/investments",
+      element:<Investments></Investments>
+      },
+      {
+      path:"/payruns",
+      element:<PayRuns></PayRuns>
+      },
+      {
+      path:"/salarydetails",
+      element:<SalaryDetails></SalaryDetails>
+      },
+      {
+      path:"/timeclock",
+      element:<TimeClock></TimeClock>
+      },
+      {
+      path:"/reports",
+      element:<Reports></Reports>
+      },
+      ]
+    },
+
+  ]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+            <RouterProvider router={router}>
+        <SidebarLayout></SidebarLayout>
+      </RouterProvider>
+
     </div>
   );
 }
