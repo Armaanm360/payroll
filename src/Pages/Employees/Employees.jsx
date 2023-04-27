@@ -1,8 +1,9 @@
 import { CheckBox } from '@mui/icons-material';
 import { Avatar, Box, Button, Card, CardActions, CardContent, Container, CssBaseline, FormControlLabel, Grid, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 const bull = (
   <Box
     component="span"
@@ -22,6 +23,15 @@ const Employees = () => {
     createData('Cupcake', 305, 3.7, 67, 4.3),
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
+
+  const [store,setStore] = useState([]);
+  const postUrl = 'https://soft.quiz360.online/api/todo';
+
+  useEffect(()=>{
+        fetch('http://192.168.0.227/myPractisebackend/api/employee')
+        .then(response => response.json())
+        .then(data => setStore(data));
+  },[])
 
   const style = {
     position: 'absolute',
@@ -44,11 +54,12 @@ const Employees = () => {
   const [salary, setSalary] = useState(null);
   const stringRegex = /^([ \u00c0-\u01ffa-zA-Z'\-])+$/;
 
-  const createOnClick = (e) => {
+  const createOnClick = async (e) => {
     e.preventDefault();
     const employee_name = e.target.employee_name.value;
     const postition_name = e.target.postition_name.value;
     const insalary = e.target.salary.value;
+    const postUrl = 'http://192.168.0.227/myPractisebackend/api/employee';
 
 
 
@@ -95,22 +106,15 @@ const Employees = () => {
         theme: "light",
       });
     }
-   else if (insalary.trim() === '') {
-      setSalary('Please Enter Salary');
-
-      return toast.error(salary, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
 
 
+
+
+    const resp = await axios.post(postUrl,{
+      employee_name,
+      postition_name,
+      insalary
+     })
     setOpen(false);
     toast.success("New Employee Created")
     
@@ -138,7 +142,7 @@ const Employees = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
+            <TableCell>Employee Name</TableCell>
             <TableCell align="right">Time-In(Morning)</TableCell>
             <TableCell align="right">Time-Out</TableCell>
             <TableCell align="right">Total Hours</TableCell>
@@ -146,18 +150,18 @@ const Employees = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {store.map((store) => (
             <TableRow
-              key={row.name}
+              key={store.employee_id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {store.employee_name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{store.employee_name}</TableCell>
+              <TableCell align="right">{store.postition_name}</TableCell>
+              <TableCell align="right">{store.salary}</TableCell>
+              <TableCell align="right">{store.address}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -231,10 +235,10 @@ const Employees = () => {
                     <Grid item xs={12}>
                       <TextField
                         fullWidth
-                        id="contract"
-                        label="Contract"
-                        name="contract"
-                        autoComplete="contract"
+                        id="contact"
+                        label="Contact"
+                        name="contact"
+                        autoComplete="contact"
                       />
                     </Grid>
                     <Grid item xs={12}>
@@ -242,7 +246,6 @@ const Employees = () => {
                         fullWidth
                         name="status"
                         label="Status"
-                        type="text"
                         id="status"
                         autoComplete="status"
                       />
